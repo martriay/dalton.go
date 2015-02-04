@@ -11,10 +11,10 @@ func main() {
   re, _ := regexp.Compile("^#?([a-f0-9]{6}|[a-f0-9]{3})$")
 
   http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    c.Color = r.URL.Path[1:]
+    c.hex = r.URL.Path[1:]
     page := "error.html"
 
-    if re.MatchString(c.Color) {
+    if re.MatchString(c.hex) {
       page = "color.html"
     }
 
@@ -26,5 +26,5 @@ func main() {
 }
 
 type color struct {
-  Color string
+  hex string
 }
